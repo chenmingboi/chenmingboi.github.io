@@ -35,6 +35,8 @@ function defaultFragment(uv) {
   return texture(ix * scaled + 0.5, iy * scaled + 0.5)
 }
 
+const MAX_DISPLACEMENT_SCALE = 48
+
 class Shader {
   constructor(options = {}) {
     this.element = options.element
@@ -188,13 +190,16 @@ class Shader {
         { x: x / w, y: y / h },
         mouseProxy,
       )
-      const dx = pos.x * w - x
-      const dy = pos.y * h - y
+      const dx = x - pos.x * w
+      const dy = y - pos.y * h
       maxScale = Math.max(maxScale, Math.abs(dx), Math.abs(dy))
       rawValues.push(dx, dy)
     }
 
-    maxScale *= 0.5
+    maxScale = Math.min(maxScale * 0.5, MAX_DISPLACEMENT_SCALE)
+    if (maxScale <= 0) {
+      maxScale = 1
+    }
 
     let index = 0
     for (let i = 0; i < data.length; i += 4) {
