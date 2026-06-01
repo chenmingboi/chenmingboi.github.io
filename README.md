@@ -1,6 +1,8 @@
 # chenmingboi.github.io
 
-高级、优雅、克制风格的个人主页 Landing Page，基于 `Vite + React + Tailwind CSS + Framer Motion`。
+个人主页 Landing Page，基于 `Vite + React + Tailwind CSS + Framer Motion`
+
+访问链接：https://chenmingboi.github.io/
 
 ## Tech Stack
 
