@@ -1,44 +1,29 @@
 import Reveal from './Reveal.jsx'
-import GlassPanel from './GlassPanel.jsx'
 
 function BlogPreview({ posts, blogHref }) {
   return (
-    <section id="blog" className="scroll-mt-28 space-y-6">
+    <section id="blog" className="content-section">
       <Reveal>
-        <p className="eyebrow">Blog</p>
-      </Reveal>
-      <Reveal delay={0.05}>
-        <h2 className="section-title">Notes on engineering, design, and product thinking.</h2>
+        <h2 className="section-heading"><span aria-hidden="true">✍️</span> Recent Writing</h2>
       </Reveal>
 
-      <div className="grid gap-4 lg:grid-cols-3">
+      <div className="entry-list blog-list">
         {posts.map((post, index) => (
-          <Reveal key={post.title} delay={0.08 + index * 0.05}>
-            <GlassPanel className="rounded-2xl p-5">
-              <article className="space-y-3">
-                <p className="text-xs uppercase tracking-[0.12em] text-ink-400">{post.date}</p>
-                <h3 className="font-display text-lg font-semibold text-ink-50">{post.title}</h3>
-                <p className="text-sm leading-7 text-ink-300">{post.excerpt}</p>
-                <ul className="flex flex-wrap gap-2">
-                  {post.tags.map((tag) => (
-                    <li key={tag} className="chip">
-                      {tag}
-                    </li>
-                  ))}
-                </ul>
-                <a href={post.href} className="inline-flex text-sm text-accent-700 transition hover:text-accent-400">
-                  Read Preview
-                </a>
-              </article>
-            </GlassPanel>
+          <Reveal key={post.title} delay={0.04 + index * 0.03}>
+            <article className="blog-entry">
+              <time dateTime={post.date}>{post.date}</time>
+              <div>
+                <h3><a href={post.href}>{post.title}</a></h3>
+                <p>{post.excerpt}</p>
+                <p className="post-tags">{post.tags.join(' · ')}</p>
+              </div>
+            </article>
           </Reveal>
         ))}
       </div>
 
-      <Reveal delay={0.15}>
-        <a href={blogHref} className="btn btn-primary">
-          Enter Blog
-        </a>
+      <Reveal delay={0.12}>
+        <a href={blogHref} className="text-link">View all writing →</a>
       </Reveal>
     </section>
   )

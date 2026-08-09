@@ -1,8 +1,10 @@
 export const profile = {
   identity: {
     name: 'chenmingboi',
+    initials: 'CB',
     role: 'Software Engineering Student',
     subtitle: '软件工程专业学生',
+    location: 'China',
     tagline: 'Designing calm, reliable, and production-ready web experiences.',
     intro:
       'I focus on frontend engineering, interaction design, and maintainable architecture. The goal is simple: build digital products that feel elegant and dependable from day one.',
