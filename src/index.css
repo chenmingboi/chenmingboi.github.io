@@ -105,7 +105,7 @@ label,
 input,
 textarea,
 [contenteditable='true'] {
-  cursor: url('/cursor-text.svg') 5 9, text;
+  cursor: url('/cursor-text.svg') 5 10, text;
 }
 
 a,
