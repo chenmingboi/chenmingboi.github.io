@@ -4,7 +4,11 @@
 
 ## Online Website
 
-[访问 MingboChen 个人主页](https://chenmingboi.github.io/)
+[访问 MingboChen 个人主页](https://mingbochen.github.io/)
+
+## 使用手册
+
+[查看页面内容与模块修改说明](./使用手册.md)
 
 ## Tech Stack
 
@@ -19,6 +23,7 @@
 src/
   components/
     About.jsx
+    Awards.jsx
     BlogPreview.jsx
     Contact.jsx
     Footer.jsx
@@ -26,6 +31,7 @@ src/
     Hero.jsx
     Navbar.jsx
     Projects.jsx
+    Publications.jsx
     Reveal.jsx
   data/
     profile.js
@@ -72,10 +78,11 @@ All personal content is centralized in:
 
 You can update:
 
-- `identity` (name, role, subtitle, tagline, intro)
-- `links` (blog, github, email, social)
-- `projects`
-- `posts`
+- `identity` (name, initials, subtitle)
+- `about`
+- `links` (email)
+- `publications`
+- `awards`
 
 ## GitHub Pages Deployment
 
@@ -97,7 +104,7 @@ GitHub settings checklist:
 
 ## Design Notes
 
-- Dark, low-saturation palette with clear typography hierarchy
-- Controlled Liquid Glass only on key modules (Navbar, Profile card, Projects, Contact)
+- Light academic profile layout with clear typography hierarchy
+- Professional publication metadata and resource-link treatment
 - Motion is subtle and automatically reduced when user enables `prefers-reduced-motion`
-- Single-page anchors: `home / about / projects / blog / contact`
+- Single-page anchors: `home / about / publications / awards`

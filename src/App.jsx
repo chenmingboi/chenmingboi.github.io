@@ -1,9 +1,8 @@
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
-import Projects from './components/Projects.jsx'
-import BlogPreview from './components/BlogPreview.jsx'
-import Contact from './components/Contact.jsx'
+import Publications from './components/Publications.jsx'
+import Awards from './components/Awards.jsx'
 import Footer from './components/Footer.jsx'
 import { navigation, profile } from './data/profile.js'
 
@@ -20,9 +19,8 @@ function App() {
         <div className="content-column">
           <main className="profile-content">
             <About paragraphs={profile.about} />
-            <Projects items={profile.projects} />
-            <BlogPreview posts={profile.posts} blogHref={profile.links.blog} />
-            <Contact links={profile.links} />
+            <Publications items={profile.publications} />
+            <Awards items={profile.awards} />
           </main>
           <Footer name={profile.identity.name} />
         </div>

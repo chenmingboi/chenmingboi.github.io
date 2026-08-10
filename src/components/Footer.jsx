@@ -1,8 +1,7 @@
 function Footer({ name }) {
   return (
     <footer className="site-footer">
-      <p>{new Date().getFullYear()} {name}. Built with care.</p>
-      <p>React · Tailwind CSS · GitHub Pages</p>
+      <p>© {new Date().getFullYear()} {name}</p>
     </footer>
   )
 }

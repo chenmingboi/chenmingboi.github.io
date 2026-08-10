@@ -20,15 +20,10 @@ function Hero({ identity, links }) {
 
       <div className="profile-copy">
         <h1>{identity.name}</h1>
-        <p className="profile-role">{identity.role}</p>
         <p className="profile-subtitle">{identity.subtitle}</p>
-        <p className="profile-tagline">{identity.tagline}</p>
-        <p className="profile-location">{identity.location}</p>
 
-        <nav className="profile-links" aria-label="Profile links">
-          <a href={links.github} target="_blank" rel="noreferrer">GitHub</a>
+        <nav className="profile-links" aria-label="Contact links">
           <a href={links.email}>Email</a>
-          <a href={links.blog}>Blog</a>
         </nav>
       </div>
     </motion.section>
