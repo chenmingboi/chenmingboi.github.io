@@ -1,8 +1,10 @@
-# chenmingboi.github.io
+# MingboChen
 
 个人主页 Landing Page，基于 `Vite + React + Tailwind CSS + Framer Motion`
 
-访问链接：https://chenmingboi.github.io/
+## Online Website
+
+[访问 MingboChen 个人主页](https://chenmingboi.github.io/)
 
 ## Tech Stack
 

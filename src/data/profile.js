@@ -1,22 +1,21 @@
 export const profile = {
   identity: {
-    name: 'chenmingboi',
-    initials: 'CB',
+    name: 'Mingbo Chen',
+    initials: 'MC',
     role: 'Software Engineering Student',
-    subtitle: '软件工程专业学生',
+    subtitle: 'NJU',
     location: 'China',
     tagline: 'Designing calm, reliable, and production-ready web experiences.',
     intro:
       'I focus on frontend engineering, interaction design, and maintainable architecture. The goal is simple: build digital products that feel elegant and dependable from day one.',
   },
   about: [
-    'I am currently exploring modern web engineering practices, from component architecture and performance tuning to UX-focused product delivery. I enjoy turning complex requirements into clear, maintainable interfaces.',
-    '目前重点关注 React 生态、工程化质量、可维护性设计以及前端体验细节。我偏好克制但有质感的视觉语言，并持续打磨从需求到上线的完整交付能力。',
+    ''
   ],
   links: {
     blog: '#',
     github: 'https://github.com/chenmingboi',
-    email: 'mailto:your.email@example.com',
+    email: 'mailto:2161936486@qq.com',
     social: [
       { label: 'Bilibili', value: '@你的账号待补充', href: '#' },
       { label: 'CSDN', value: '技术文章更新中', href: '#' },
