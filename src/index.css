@@ -16,7 +16,7 @@
 
 html {
   scroll-behavior: smooth;
-  cursor: url('/cursor.svg') 2 1, default;
+  cursor: url('/cursor.svg') 5 3, default;
 }
 
 body {
@@ -105,14 +105,14 @@ label,
 input,
 textarea,
 [contenteditable='true'] {
-  cursor: url('/cursor-text.svg') 5 10, text;
+  cursor: url('/cursor-text.svg') 12 12, text;
 }
 
 a,
 a *,
 button,
 button * {
-  cursor: url('/cursor-link.svg') 6 3, pointer;
+  cursor: url('/cursor-link.svg') 10 3, pointer;
 }
 
 a:focus-visible,
