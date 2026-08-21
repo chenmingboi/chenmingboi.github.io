@@ -1,9 +1,39 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+
+const CURSOR_PREFERENCE_KEY = 'apple-cursor-enabled'
+
+function getInitialCursorPreference() {
+  try {
+    const savedPreference = window.localStorage.getItem(CURSOR_PREFERENCE_KEY)
+    return savedPreference === null ? true : savedPreference === 'true'
+  } catch {
+    return true
+  }
+}
 
 function Navbar({ brand, items }) {
   const [isOpen, setIsOpen] = useState(false)
+  const [isAppleCursorEnabled, setIsAppleCursorEnabled] = useState(
+    getInitialCursorPreference,
+  )
   const reduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    document.documentElement.classList.toggle(
+      'apple-cursor',
+      isAppleCursorEnabled,
+    )
+
+    try {
+      window.localStorage.setItem(
+        CURSOR_PREFERENCE_KEY,
+        String(isAppleCursorEnabled),
+      )
+    } catch {
+      // The switch still works for this visit if storage is unavailable.
+    }
+  }, [isAppleCursorEnabled])
 
   const panelAnimation = reduceMotion
     ? { initial: { opacity: 1, height: 'auto' }, animate: { opacity: 1, height: 'auto' } }
@@ -23,6 +53,17 @@ function Navbar({ brand, items }) {
             </a>
           ))}
         </nav>
+
+        <button
+          type="button"
+          className="cursor-toggle"
+          role="switch"
+          aria-checked={isAppleCursorEnabled}
+          onClick={() => setIsAppleCursorEnabled((enabled) => !enabled)}
+        >
+          <span className="cursor-toggle-label">Apple cursor</span>
+          <span className="cursor-switch" aria-hidden="true" />
+        </button>
 
         <button
           type="button"

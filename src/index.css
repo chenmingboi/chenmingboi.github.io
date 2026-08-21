@@ -16,6 +16,9 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+html.apple-cursor {
   cursor: url('/cursor.svg') 5 3, default;
 }
 
@@ -84,34 +87,34 @@ a {
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-span,
-time,
-li,
-dt,
-dd,
-blockquote,
-em,
-strong,
-code,
-pre,
-label,
-input,
-textarea,
-[contenteditable='true'] {
+html.apple-cursor h1,
+html.apple-cursor h2,
+html.apple-cursor h3,
+html.apple-cursor h4,
+html.apple-cursor h5,
+html.apple-cursor h6,
+html.apple-cursor p,
+html.apple-cursor span,
+html.apple-cursor time,
+html.apple-cursor li,
+html.apple-cursor dt,
+html.apple-cursor dd,
+html.apple-cursor blockquote,
+html.apple-cursor em,
+html.apple-cursor strong,
+html.apple-cursor code,
+html.apple-cursor pre,
+html.apple-cursor label,
+html.apple-cursor input,
+html.apple-cursor textarea,
+html.apple-cursor [contenteditable='true'] {
   cursor: url('/cursor-text.svg') 12 12, text;
 }
 
-a,
-a *,
-button,
-button * {
+html.apple-cursor a,
+html.apple-cursor a *,
+html.apple-cursor button,
+html.apple-cursor button * {
   cursor: url('/cursor-link.svg') 10 3, pointer;
 }
 
@@ -159,6 +162,63 @@ button:focus-visible {
   min-width: 0;
   align-items: stretch;
   gap: 4px;
+}
+
+.cursor-toggle {
+  display: inline-flex;
+  min-height: 34px;
+  margin-left: auto;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 2px 5px 8px;
+  border: 0;
+  background: transparent;
+  color: #73797d;
+  font: inherit;
+}
+
+.cursor-toggle-label {
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cursor-switch {
+  position: relative;
+  display: block;
+  width: 31px;
+  height: 19px;
+  flex: 0 0 auto;
+  border: 1px solid #c7ccd0;
+  border-radius: 999px;
+  background: #dadddf;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.cursor-switch::after {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(24, 30, 34, 0.2);
+  content: '';
+  transition: transform 160ms ease;
+}
+
+.cursor-toggle[aria-checked='true'] .cursor-switch {
+  border-color: #4d5357;
+  background: #4d5357;
+}
+
+.cursor-toggle[aria-checked='true'] .cursor-switch::after {
+  transform: translateX(12px);
+}
+
+.cursor-toggle:hover {
+  color: #282c2f;
 }
 
 .topbar-link {
@@ -731,6 +791,7 @@ button:focus-visible {
   .topbar-inner {
     width: min(100% - 32px, 1260px);
     flex-wrap: wrap;
+    gap: 12px;
   }
 
   .desktop-nav {
@@ -739,6 +800,7 @@ button:focus-visible {
 
   .menu-toggle {
     display: block;
+    margin-left: 0;
   }
 
   .mobile-nav {
