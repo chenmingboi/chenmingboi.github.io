@@ -1,22 +1,7 @@
-import { motion, useReducedMotion } from 'framer-motion'
-
-function Reveal({ className = '', delay = 0, children }) {
-  const reduceMotion = useReducedMotion()
-
-  const initial = reduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }
-  const whileInView = reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }
-
-  return (
-    <motion.div
-      className={className}
-      initial={initial}
-      whileInView={whileInView}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{ duration: 0.4, delay, ease: [0.22, 1, 0.36, 1] }}
-    >
-      {children}
-    </motion.div>
-  )
+// Preserve the shared wrapper for older sections. Content stays visible in
+// prerendered HTML, with reduced motion, and when JavaScript is unavailable.
+function Reveal({ className = '', children }) {
+  return <div className={className}>{children}</div>
 }
 
 export default Reveal

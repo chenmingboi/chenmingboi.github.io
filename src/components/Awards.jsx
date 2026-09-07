@@ -1,35 +1,22 @@
-import Reveal from './Reveal.jsx'
-
 function Awards({ items }) {
-  return (
-    <section id="awards" className="content-section">
-      <Reveal>
-        <h2 className="section-heading"><span aria-hidden="true">03</span> Awards</h2>
-      </Reveal>
+  if (!items.length) return null
 
-      {items.length > 0 ? (
-        <div className="award-list">
-          {items.map((award, index) => (
-            <Reveal key={`${award.year}-${award.title}`} delay={0.04 + index * 0.03}>
-              <article className="award-entry">
-                <time>{award.year}</time>
-                <div>
-                  <h3>{award.title}</h3>
-                  {award.issuer && <p className="award-issuer">{award.issuer}</p>}
-                  {award.description && <p>{award.description}</p>}
-                  {award.href && (
-                    <a href={award.href} target="_blank" rel="noreferrer">Details ↗</a>
-                  )}
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
-      ) : (
-        <Reveal delay={0.04}>
-          <p className="content-empty">Award details will be added after confirmation.</p>
-        </Reveal>
-      )}
+  return (
+    <section id="awards" className="content-section" aria-labelledby="awards-heading">
+      <h2 id="awards-heading" className="section-heading">Awards</h2>
+      <ul className="entry-list">
+        {[...items].sort((a, b) => Number(b.year) - Number(a.year)).map((award) => (
+          <li key={award.id} className="award-entry">
+            <time dateTime={award.year}>{award.year}</time>
+            <div>
+              <h3>{award.title}</h3>
+              {award.issuer && <p>{award.issuer}</p>}
+              {award.description && <p>{award.description}</p>}
+              {award.href && <a href={award.href}>Details<span className="sr-only"> for {award.title}</span></a>}
+            </div>
+          </li>
+        ))}
+      </ul>
     </section>
   )
 }

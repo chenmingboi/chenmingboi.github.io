@@ -1,29 +1,28 @@
-import Reveal from './Reveal.jsx'
-
 function Projects({ items }) {
-  return (
-    <section id="projects" className="content-section">
-      <Reveal>
-        <h2 className="section-heading"><span aria-hidden="true">🧩</span> Selected Projects</h2>
-      </Reveal>
+  if (!items.length) return null
 
-      <div className="entry-list">
-        {items.map((project, index) => (
-          <Reveal key={project.name} delay={0.04 + index * 0.03}>
-            <article className="project-entry">
-              <div className="entry-title-line">
-                <span className="entry-badge">{project.stack[0]}</span>
-                <h3>{project.name}</h3>
-              </div>
-              <p className="entry-summary"><em>{project.summary}</em></p>
-              <p className="entry-meta">
-                <span>{project.stack.join(' · ')}</span>
-                <a href={project.href}>Project ↗</a>
-              </p>
+  return (
+    <section id="projects" className="content-section" aria-labelledby="projects-heading">
+      <h2 id="projects-heading" className="section-heading">Projects</h2>
+      <ul className="entry-list">
+        {items.map((project) => (
+          <li key={project.id} className="project-entry">
+            <article>
+              <h3>{project.name}</h3>
+              <p>{project.summary}</p>
+              {project.role && <p className="entry-meta">{project.role}</p>}
+              {project.stack?.length > 0 && <p className="entry-meta">{project.stack.join(' · ')}</p>}
+              {project.links?.length > 0 && (
+                <ul className="resource-links" aria-label={`Resources for ${project.name}`}>
+                  {project.links.map((link) => (
+                    <li key={link.label}><a href={link.href}>{link.label}</a></li>
+                  ))}
+                </ul>
+              )}
             </article>
-          </Reveal>
+          </li>
         ))}
-      </div>
+      </ul>
     </section>
   )
 }

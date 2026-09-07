@@ -1,81 +1,54 @@
-import Reveal from './Reveal.jsx'
-
 function Publications({ items }) {
-  const publicationsByYear = items.reduce((groups, publication) => {
-    const year = publication.year || 'Other'
-    const group = groups.find((entry) => entry.year === year)
-
-    if (group) {
-      group.items.push(publication)
-    } else {
-      groups.push({ year, items: [publication] })
-    }
-
-    return groups
-  }, [])
+  const years = [...new Set(items.map((item) => item.year))].sort((a, b) => Number(b) - Number(a))
 
   return (
-    <section id="publications" className="content-section publications-section">
-      <Reveal>
-        <h2 className="section-heading"><span aria-hidden="true">02</span> Publications</h2>
-      </Reveal>
-
-      {publicationsByYear.length > 0 ? (
+    <section id="publications" className="content-section" aria-labelledby="publications-heading">
+      <h2 id="publications-heading" className="section-heading">Publications</h2>
+      {years.length ? (
         <div className="publication-groups">
-          {publicationsByYear.map((group, groupIndex) => (
-            <Reveal key={group.year} delay={0.04 + groupIndex * 0.03}>
-              <div className="publication-year-group">
-                <p className="publication-year">{group.year}</p>
-                <div className="publication-list">
-                  {group.items.map((publication) => (
-                    <article className="publication-entry" key={publication.title}>
-                      <div className="publication-title-line">
-                        <h3>{publication.title}</h3>
-                        {publication.highlight && (
-                          <span className="publication-highlight">{publication.highlight}</span>
-                        )}
-                      </div>
-
+          {years.map((year) => (
+            <div key={year} className="publication-year-group">
+              <p className="publication-year"><time dateTime={year}>{year}</time></p>
+              <ul className="entry-list">
+                {items.filter((item) => item.year === year).map((publication) => (
+                  <li key={publication.id} className="publication-entry">
+                    <article>
+                      <h3>{publication.title}</h3>
                       <p className="publication-authors">
                         {publication.authors.map((author, index) => (
-                          <span key={`${publication.title}-${author.name}`}>
-                            <span className={author.self ? 'publication-self' : undefined}>
-                              {author.name}
-                            </span>
-                            {index < publication.authors.length - 1 ? ', ' : ''}
+                          <span key={`${author.name}-${index}`}>
+                            {index > 0 && ', '}
+                            {author.self ? <strong>{author.name}</strong> : author.name}
                           </span>
                         ))}
                       </p>
-
                       <p className="publication-venue">
-                        <span>{publication.venue}</span>
-                        {publication.status && <span className="publication-status">{publication.status}</span>}
+                        <cite>{publication.venue}</cite>
+                        {publication.status && <span> · {publication.status}</span>}
                       </p>
-
+                      {publication.highlight && <p className="publication-highlight">{publication.highlight}</p>}
+                      {publication.summary && <p>{publication.summary}</p>}
                       {publication.links?.length > 0 && (
-                        <nav className="publication-links" aria-label={`Resources for ${publication.title}`}>
+                        <ul className="resource-links" aria-label={`Resources for ${publication.title}`}>
                           {publication.links.map((link) => (
-                            <a key={link.label} href={link.href} target="_blank" rel="noreferrer">
-                              {link.label}
-                            </a>
+                            <li key={link.label}><a href={link.href}>{link.label}</a></li>
                           ))}
-                        </nav>
+                        </ul>
+                      )}
+                      {publication.bibtex && (
+                        <details className="citation">
+                          <summary>BibTeX<span className="sr-only"> for {publication.title}</span></summary>
+                          <pre><code>{publication.bibtex}</code></pre>
+                        </details>
                       )}
                     </article>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
         </div>
-      ) : (
-        <Reveal delay={0.04}>
-          <div className="content-empty publication-empty">
-            <p>Publication details will be added after confirmation.</p>
-            <span>Title · Authors · Venue · Paper / Code / Project / BibTeX</span>
-          </div>
-        </Reveal>
-      )}
+      ) : <p className="content-empty">No publications listed yet.</p>}
     </section>
   )
 }

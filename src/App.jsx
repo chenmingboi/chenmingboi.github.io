@@ -2,29 +2,30 @@ import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
 import About from './components/About.jsx'
 import Publications from './components/Publications.jsx'
+import Projects from './components/Projects.jsx'
 import Awards from './components/Awards.jsx'
+import Contact from './components/Contact.jsx'
 import Footer from './components/Footer.jsx'
-import { navigation, profile } from './data/profile.js'
+import { getNavigation, profile } from './data/profile.js'
 
-function App() {
+function App({ data = profile }) {
   return (
-    <div className="site-shell">
-      <Navbar brand={profile.identity.name} items={navigation} />
-
-      <div className="page-layout">
-        <aside className="profile-sidebar">
-          <Hero identity={profile.identity} links={profile.links} />
-        </aside>
-
-        <div className="content-column">
-          <main className="profile-content">
-            <About paragraphs={profile.about} />
-            <Publications items={profile.publications} />
-            <Awards items={profile.awards} />
-          </main>
-          <Footer name={profile.identity.name} />
+    <div id="home" className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to main content</a>
+      <Navbar brand={data.identity.name} items={getNavigation(data)} />
+      <main id="main-content" className="page-layout" tabIndex={-1}>
+        <div className="profile-sidebar">
+          <Hero identity={data.identity} links={data.links} />
         </div>
-      </div>
+        <div className="content-column">
+          <About paragraphs={data.about} interests={data.researchInterests} />
+          <Publications items={data.publications} />
+          <Projects items={data.projects} />
+          <Awards items={data.awards} />
+          <Contact links={data.links} />
+        </div>
+      </main>
+      <Footer name={data.identity.name} updated={data.site.updated} />
     </div>
   )
 }
